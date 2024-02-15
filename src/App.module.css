@@ -1,0 +1,36 @@
+.header {
+    background-color: #363636;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.header h1 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.titulo {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-weight: normal;
+    padding-top: 25px;
+    font-size: 3em;
+}
+
+.footer {
+    text-align: center;
+    font-size: 1.3em;
+    background-color: #363636;
+    color: white;
+    padding: 1.5rem;
+    position: absolute;
+    inset: 0;
+    top: auto;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: white;
+    }
+}

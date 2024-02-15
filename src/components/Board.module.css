@@ -1,0 +1,25 @@
+.board {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 8vw));
+    place-content: center;
+    user-select: none;
+}
+
+.board div {
+    border: 1px solid currentColor;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    transition: .1s;
+    font-size: clamp(3em, 6vw, 6.5em);
+    display: grid;
+    place-items: center;
+    &:hover {
+        border-width: 4px;
+    }
+}
+
+.board.winner div:hover {
+    border-width: 1px;
+    cursor: default;
+}
