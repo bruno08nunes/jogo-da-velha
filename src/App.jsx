@@ -10,10 +10,12 @@ function App() {
     const [draw, setDraw] = useState(false);
     const [squares, setSquares] = useState(Array(9).fill(null));
     const [winnerSequence, setWinnerSequence] = useState([]);
-    const [isDarkMode, setIsDarkMode] = useState(
-        localStorage.getItem("isDarkMode") === "false" ??
-            window.matchMedia("(prefers-color-scheme: dark)").matches,
-    );
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        if (localStorage.getItem("isDarkMode") !== null) {
+            return localStorage.getItem("isDarkMode") === "false";
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    });
 
     const restartGame = () => {
         setWinner(false);
