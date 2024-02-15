@@ -2,5 +2,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
+}
+
+body:has(.light) {
+    background-color: white;
+    color: black;
+}
+
+body:has(.dark) {
+    background-color: #1a1a1a;
+    color: white;
 }

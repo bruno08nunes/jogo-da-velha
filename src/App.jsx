@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./App.module.css";
 import Board from "./components/Board";
 import RestartButton from "./components/RestartButton";
+import { FaRegSun, FaRegMoon } from "react-icons/fa6";
 
 function App() {
     const [isXTime, setIsXTime] = useState(true);
@@ -9,13 +10,17 @@ function App() {
     const [draw, setDraw] = useState(false);
     const [squares, setSquares] = useState(Array(9).fill(null));
     const [winnerSequence, setWinnerSequence] = useState([]);
+    const [isDarkMode, setIsDarkMode] = useState(
+        localStorage.getItem("isDarkMode") === "false" ??
+            window.matchMedia("(prefers-color-scheme: dark)").matches,
+    );
 
     const restartGame = () => {
         setWinner(false);
         setDraw(false);
-        setSquares(Array(9).fill(null))
+        setSquares(Array(9).fill(null));
         setWinnerSequence([]);
-    }
+    };
 
     const checkWinner = (squares) => {
         const winnerCombinations = [
@@ -44,10 +49,26 @@ function App() {
         return null;
     };
 
+    const changeDarkMode = (e) => {
+        localStorage.setItem("isDarkMode", isDarkMode);
+        setIsDarkMode(!isDarkMode);
+    };
+
     return (
         <>
             <header className={styles.header}>
                 <h1>Jogo da Velha</h1>
+                <button
+                    onClick={changeDarkMode}
+                    className={isDarkMode ? "dark" : "light"}
+                    aria-label={
+                        isDarkMode
+                            ? "Change to light mode"
+                            : "Change to dark mode"
+                    }
+                >
+                    {isDarkMode ? <FaRegMoon /> : <FaRegSun />}
+                </button>
             </header>
             <h2 className={styles.titulo}>
                 {winner
@@ -56,17 +77,19 @@ function App() {
                     ? "Empate"
                     : `Vez de ${isXTime ? "X" : "O"}`}
             </h2>
-            <Board
-                isXTime={isXTime}
-                setIsXTime={setIsXTime}
-                checkWinner={checkWinner}
-                winner={winner}
-                setDraw={setDraw}
-                setSquares={setSquares}
-                squares={squares}
-                winnerSequence={winnerSequence}
-            />
-            {(draw || winner) && <RestartButton restart={restartGame} />}
+            <main className={styles.main}>
+                <Board
+                    isXTime={isXTime}
+                    setIsXTime={setIsXTime}
+                    checkWinner={checkWinner}
+                    winner={winner}
+                    setDraw={setDraw}
+                    setSquares={setSquares}
+                    squares={squares}
+                    winnerSequence={winnerSequence}
+                />
+                {(draw || winner) && <RestartButton restart={restartGame} />}
+            </main>
             <footer className={styles.footer}>
                 <address>&copy; Bruno Nunes</address>
             </footer>

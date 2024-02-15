@@ -9,6 +9,10 @@
     border: 1px solid white;
     cursor: pointer;
     transition: padding .5s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
     
     &:hover {
         background-color: #363636;
