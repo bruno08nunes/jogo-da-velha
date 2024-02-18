@@ -10,7 +10,10 @@
     user-select: none;
 }
 
-.board div {
+.board button {
+    outline: none;
+    color: inherit;
+    background-color: transparent;
     border: 1px solid currentColor;
     aspect-ratio: 1 / 1;
     cursor: pointer;
@@ -18,12 +21,12 @@
     font-size: clamp(3em, 6vw, 6.5em);
     display: grid;
     place-items: center;
-    &:hover {
+    &:hover, &:focus-visible {
         border-width: 4px;
     }
 }
 
-.board.winner div:hover {
+.board.winner button:hover:not(:focus-visible) {
     border-width: 1px;
     cursor: default;
 }

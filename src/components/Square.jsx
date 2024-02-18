@@ -5,12 +5,13 @@ const Square = ({ value, onPlay, number, winnerSequence }) => {
     const checkSequence = () => winnerSequence.includes(number);
 
     return (
-        <div
+        <button
             onClick={() => onPlay(number)}
             className={checkSequence() ? styles.winner : ""}
+            aria-label={value ?? "Selecionar quadrado"}
         >
             {value}
-        </div>
+        </button>
     );
 };
 
